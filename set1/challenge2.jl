@@ -18,9 +18,11 @@ using Base64
 #=
 
 Takes in 2 hex strings and converts/returns the xor'd hex string
+Optional parameter retBytes to specify whether to return bytes array
+or a hex string (default is hex string)
 
 =#
-function xor_hex_strings(hex, xor_key)
+function xor_hex_strings(hex::String, xor_key::String, retBytes=false::Bool)
     hex = hex2bytes(hex)
     xor_key = hex2bytes(xor_key)
 
@@ -29,8 +31,15 @@ function xor_hex_strings(hex, xor_key)
         push!(output, xor(hex[i], xor_key[i]))
     end
 
-    return bytes2hex(output)
+    if(retBytes)
+        return output
+    else
+        return bytes2hex(output)
+    end
 end
 
-
-println(xor_hex_strings("1c0111001f010100061a024b53535009181c", "686974207468652062756c6c277320657965"))
+if(basename(PROGRAM_FILE) == basename(@__FILE__))
+    println(basename(PROGRAM_FILE))
+    println(basename(@__FILE__))
+    println(xor_hex_strings("1c0111001f010100061a024b53535009181c", "686974207468652062756c6c277320657965"))
+end

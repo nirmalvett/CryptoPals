@@ -16,7 +16,7 @@ using Base64
 Converts hex string to base64 string and returns the base64
 
 =#
-function hex2base64(hex)
+function hex2base64(hex::String)
     io = IOBuffer();
     iob64_encode = Base64EncodePipe(io);
     write(iob64_encode, hex2bytes(hex));
