@@ -15,6 +15,7 @@ If your function works properly, then when you feed it the string:
 =#
 using Base64
 
+
 #=
 
 Takes in 2 hex strings and converts/returns the xor'd hex string
@@ -38,8 +39,8 @@ function xor_hex_strings(hex::String, xor_key::String, retBytes=false::Bool)
     end
 end
 
-if(basename(PROGRAM_FILE) == basename(@__FILE__))
-    println(basename(PROGRAM_FILE))
-    println(basename(@__FILE__))
+function main()
     println(xor_hex_strings("1c0111001f010100061a024b53535009181c", "686974207468652062756c6c277320657965"))
 end
+
+# main()
