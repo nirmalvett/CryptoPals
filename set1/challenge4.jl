@@ -15,9 +15,9 @@ function main()
     best_match = ("", 0, 0)
     best_match_line = ""
     for line in eachline(challenge4)
-        match = hex_best_match_english(line)
+        match = best_match_english(line)
         # Compare amount of matches each line had and take best
-        if(match[2] > best_match[2])
+        if match[2] > best_match[2]
             best_match = match
             best_match_line = line
         end

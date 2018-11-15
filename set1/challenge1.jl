@@ -11,11 +11,10 @@ So go ahead and make that happen. You'll need to use this code for the rest of t
 =#
 using Base64
 
-#=
 
+"""
 Converts hex string to base64 string and returns the base64
-
-=#
+"""
 function hex2base64(hex::String)
     io = IOBuffer();
     iob64_encode = Base64EncodePipe(io);

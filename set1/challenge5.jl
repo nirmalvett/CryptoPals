@@ -14,20 +14,28 @@ a282b2f20430a652e2c652a3124333a653e2b2027630c692b20283165286326302e27282f
 =#
 
 
-#=
-
+"""
 Takes a string and applies a repeating key xor with the xor key provided
+"""
+function repeating_key_xor(input, xor_key, retBytes=false::Bool)
+    if isa(input, String)
+        input = Vector{UInt8}(input)
+    end
+    if isa(xor_key, String)
+        xor_key = Vector{UInt8}(xor_key)
+    end
 
-=#
-function repeating_key_xor(input::String, xor_key::String, retBytes=false::Bool)
-    input = Vector{UInt8}(input)
-    xor_key = Vector{UInt8}(xor_key)
     xor_key_length = length(xor_key)
     output = UInt8[]
     for i in 1:length(input)
+        try
+            val = ((i - 1) % xor_key_length) + 1
+        catch exception
+            println(xor_key_length)
+        end
         push!(output, xor(input[i], xor_key[((i - 1) % xor_key_length) + 1]))
     end
-    if(retBytes)
+    if retBytes
         return output
     else
         return String(output)

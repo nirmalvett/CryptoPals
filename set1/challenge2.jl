@@ -16,23 +16,25 @@ If your function works properly, then when you feed it the string:
 using Base64
 
 
-#=
-
+"""
 Takes in 2 hex strings and converts/returns the xor'd hex string
 Optional parameter retBytes to specify whether to return bytes array
 or a hex string (default is hex string)
-
-=#
-function xor_hex_strings(hex::String, xor_key::String, retBytes=false::Bool)
-    hex = hex2bytes(hex)
-    xor_key = hex2bytes(xor_key)
+"""
+function xor_hex_strings(hex, xor_key, retBytes=false::Bool)
+    if isa(hex, String)
+        hex = hex2bytes(hex)
+    end
+    if isa(xor_key, String)
+        xor_key = hex2bytes(xor_key)
+    end
 
     output = UInt8[]
     for i in 1:length(hex)
         push!(output, xor(hex[i], xor_key[i]))
     end
 
-    if(retBytes)
+    if retBytes
         return output
     else
         return bytes2hex(output)
