@@ -1,4 +1,4 @@
-#=
+#= S1C6
 
 There's a file challenge6.txt. It's been base64'd after being encrypted with repeating-key XOR.
 
@@ -7,7 +7,6 @@ Decrypt it.
 =#
 using Base64
 include("challenge3.jl")
-include("challenge5.jl")
 
 
 """
